@@ -1,0 +1,60 @@
+public abstract class AbstractDog {
+    protected String name;
+    protected String gender;
+    protected String birthDay;
+    protected double weight;
+    
+    protected AbstractDog(String gender, String birthDay, double weight) {
+        this("anonymous", gender, birthDay, weight);
+    }
+
+    public AbstractDog(String name, String gender, String birthDay,
+                       double weight) {
+        this.name = name;
+        this.gender = gender;
+        this.birthDay = birthDay;
+        this.weight = weight;
+    }
+    public abstract String getType();
+    public abstract String doSomethingBad();
+    public String bark() {
+        return "Wau";
+    }
+    @Override
+    public String toString() {
+        return getType() + "{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDay=" + birthDay +
+                ", weight=" + weight +
+                '}';
+    }
+}
+import java.util.Random;
+public class Bulldog extends AbstractDog {
+25
+    public Bulldog(String name, String gender, String birthDay, double
+            weight) {
+        super(name, gender, birthDay, weight);
+    }
+    @Override
+    public String getType() {
+        return "Bulldog";
+    }
+    @Override
+    public String doSomethingBad() {
+        Random random = new Random();
+        if (random.nextDouble() < 0.3) {
+            return killTheCat();
+        } else {
+            return destroyTheKitchen();
+        }
+    }
+    public String killTheCat() {
+        return "I killed the cat";
+    }
+    public String destroyTheKitchen() {
+        return "Basically I broke everything and ate everything from the
+        fridge";
+    }
+}
